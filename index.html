@@ -605,33 +605,264 @@
       gap: 1rem;
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 640px) {
-      .encabezado-contenido {
-        flex-direction: column;
-        align-items: stretch;
-      }
+    /* ========================================
+   DISEÑO RESPONSIVO PARA TABLETS Y MÓVILES
+======================================== */
 
-      .badge-cartelera {
-        display: none;
-      }
+/* TABLETS Y PANTALLAS MEDIANAS */
+@media (max-width: 900px) {
 
-      .heroe-contenido {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+  .encabezado-contenido {
+    gap: 1rem;
+    padding: 0.85rem 1.2rem;
+  }
 
-      .pie-pagina-contenido {
-        flex-direction: column;
-        justify-content: center;
-      }
-    }
+  .buscador-contenedor {
+    max-width: 350px;
+  }
 
-    @media (max-width: 420px) {
-      .opciones-reserva {
-        grid-template-columns: 1fr;
-      }
-    }
+  .heroe-contenido {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cartelera-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem;
+  }
+
+  .contenedor-principal {
+    padding: 1.5rem 1.2rem;
+  }
+
+  .modal-contenedor {
+    max-width: 550px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-cuerpo {
+    padding: 1.2rem;
+  }
+}
+
+/* CELULARES */
+@media (max-width: 640px) {
+
+  .encabezado-contenido {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.8rem;
+    padding: 0.8rem 1rem;
+  }
+
+  .logo-contenedor {
+    justify-content: center;
+  }
+
+  .logo-texto {
+    font-size: 1.2rem;
+  }
+
+  .buscador-contenedor {
+    width: 100%;
+    max-width: none;
+  }
+
+  .badge-cartelera {
+    display: none;
+  }
+
+  .seccion-heroe {
+    padding: 1.5rem 1rem;
+  }
+
+  .heroe-contenido {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .heroe-titulo {
+    font-size: 1.55rem;
+  }
+
+  .heroe-subtitulo {
+    font-size: 0.85rem;
+  }
+
+  .filtros-genero {
+    width: 100%;
+    gap: 0.4rem;
+  }
+
+  .btn-filtro {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.78rem;
+  }
+
+  .contenedor-principal {
+    padding: 1.2rem 1rem;
+  }
+
+  .cartelera-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+
+  .pelicula-contenido {
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .pelicula-titulo {
+    font-size: 0.9rem;
+  }
+
+  .pelicula-meta {
+    font-size: 0.7rem;
+    gap: 0.3rem;
+  }
+
+  .badge-horario {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.35rem;
+  }
+
+  .btn-ver-mas {
+    font-size: 0.75rem;
+    padding: 0.6rem 0.3rem;
+  }
+
+  /* VENTANA DE RESERVA */
+  .modal-overlay {
+    align-items: center;
+    padding: 0.5rem;
+  }
+
+  .modal-contenedor {
+    width: 100%;
+    max-width: 100%;
+    max-height: 94vh;
+    border-radius: 15px;
+    overflow-y: auto;
+  }
+
+  .modal-cabecera-poster {
+    height: 160px;
+  }
+
+  .modal-info-basica {
+    left: 1rem;
+    right: 1rem;
+  }
+
+  .modal-cuerpo {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .modal-meta-bar {
+    gap: 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  .modal-sinopsis {
+    font-size: 0.82rem;
+  }
+
+  .opciones-reserva {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.7rem;
+  }
+
+  .campo-reserva label {
+    font-size: 0.72rem;
+  }
+
+  .campo-reserva input,
+  .campo-reserva select {
+    font-size: 0.78rem;
+    padding: 0.65rem 0.5rem;
+    min-width: 0;
+  }
+
+  .modal-horarios-grid {
+    gap: 0.4rem;
+  }
+
+  .btn-horario {
+    padding: 0.55rem 0.7rem;
+    font-size: 0.8rem;
+  }
+
+  .btn-comprar {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .pie-pagina {
+    padding: 1rem;
+    font-size: 0.75rem;
+  }
+
+  .pie-pagina-contenido {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+}
+
+/* CELULARES PEQUEÑOS */
+@media (max-width: 380px) {
+
+  .cartelera-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pelicula-titulo {
+    font-size: 1rem;
+  }
+
+  .pelicula-contenido {
+    padding: 1rem;
+  }
+
+  .opciones-reserva {
+    grid-template-columns: 1fr;
+  }
+
+  .heroe-titulo {
+    font-size: 1.35rem;
+  }
+
+  .modal-cabecera-poster {
+    height: 140px;
+  }
+
+  .modal-cuerpo {
+    padding: 0.85rem;
+  }
+}
+
+/* MEJORAS PARA PANTALLAS TÁCTILES */
+@media (hover: none) and (pointer: coarse) {
+
+  .pelicula-card:hover {
+    transform: none;
+  }
+
+  .pelicula-card:hover .poster-imagen {
+    transform: none;
+  }
+
+  .btn-filtro,
+  .btn-ver-mas,
+  .btn-horario,
+  .btn-comprar {
+    min-height: 42px;
+  }
+}
   </style>
 </head>
 
