@@ -3,14 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CinePremier - Cartelera de Cine (CSS Tradicional)</title>
-  <!-- Google Fonts: Inter -->
+  <title>CinePremier - Cartelera de Cine</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
+
   <style>
-    /* ==========================================================================
-       1. VARIABLES Y REGLAS BASE (Reset & Modern CSS Variables)
-       ========================================================================== */
     :root {
       --bg-principal: #090d16;
       --bg-header: rgba(15, 23, 42, 0.85);
@@ -44,9 +40,7 @@
       flex-direction: column;
     }
 
-    /* ==========================================================================
-       2. CABECERA Y NAVEGACIÓN (Header & Navbar)
-       ========================================================================== */
+    /* CABECERA */
     .encabezado {
       position: sticky;
       top: 0;
@@ -94,7 +88,7 @@
       letter-spacing: -0.5px;
     }
 
-    /* Buscador */
+    /* BUSCADOR */
     .buscador-contenedor {
       flex: 1;
       max-width: 420px;
@@ -151,9 +145,7 @@
       box-shadow: 0 0 8px #10b981;
     }
 
-    /* ==========================================================================
-       3. SECCIÓN BANNER / HÉROE
-       ========================================================================== */
+    /* BANNER */
     .seccion-heroe {
       background: linear-gradient(180deg, rgba(15, 23, 42, 0.6) 0%, var(--bg-principal) 100%);
       border-bottom: 1px solid var(--borde-color);
@@ -182,7 +174,7 @@
       font-size: 0.95rem;
     }
 
-    /* Botones de Filtro por Género */
+    /* FILTROS */
     .filtros-genero {
       display: flex;
       gap: 0.5rem;
@@ -213,9 +205,7 @@
       box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
     }
 
-    /* ==========================================================================
-       4. GRID DE PELÍCULAS (Main Content & Cards)
-       ========================================================================== */
+    /* CARTELERA */
     .contenedor-principal {
       max-width: 1200px;
       width: 100%;
@@ -230,7 +220,6 @@
       gap: 1.75rem;
     }
 
-    /* Tarjeta de Película */
     .pelicula-card {
       background-color: var(--bg-tarjeta);
       border: 1px solid var(--borde-color);
@@ -248,7 +237,6 @@
       box-shadow: var(--sombra);
     }
 
-    /* Póster y Superposiciones */
     .poster-wrapper {
       position: relative;
       width: 100%;
@@ -329,7 +317,6 @@
       text-overflow: ellipsis;
     }
 
-    /* Detalles y Horarios */
     .pelicula-contenido {
       padding: 1rem;
       display: flex;
@@ -386,7 +373,7 @@
       color: white;
     }
 
-    /* Sin Resultados */
+    /* SIN RESULTADOS */
     .sin-resultados {
       text-align: center;
       padding: 4rem 1rem;
@@ -399,9 +386,7 @@
       margin-bottom: 0.5rem;
     }
 
-    /* ==========================================================================
-       5. MODAL DE DETALLES Y BOLETOS
-       ========================================================================== */
+    /* MODAL */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -428,7 +413,8 @@
       border-radius: 20px;
       max-width: 500px;
       width: 100%;
-      overflow: hidden;
+      max-height: 95vh;
+      overflow-y: auto;
       transform: scale(0.92);
       transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
@@ -491,6 +477,7 @@
       gap: 1rem;
       font-size: 0.85rem;
       color: var(--texto-secundario);
+      flex-wrap: wrap;
     }
 
     .modal-sinopsis {
@@ -524,10 +511,60 @@
       transition: var(--transicion);
     }
 
-    .btn-horario:hover, .btn-horario.seleccionado {
+    .btn-horario:hover,
+    .btn-horario.seleccionado {
       background-color: var(--color-primario);
       border-color: var(--color-primario);
       color: white;
+    }
+
+    /* NUEVOS CONTROLES DE RESERVA */
+    .opciones-reserva {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .campo-reserva {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      min-width: 0;
+    }
+
+    .campo-reserva label {
+      color: var(--texto-secundario);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .campo-reserva input,
+    .campo-reserva select {
+      width: 100%;
+      padding: 0.65rem 0.75rem;
+      background: var(--bg-hover);
+      border: 1px solid var(--borde-color);
+      border-radius: 8px;
+      color: var(--texto-principal);
+      font: inherit;
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    .campo-reserva input:focus,
+    .campo-reserva select:focus {
+      border-color: var(--color-primario);
+      box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.18);
+    }
+
+    .campo-reserva select option {
+      background: var(--bg-tarjeta);
+      color: var(--texto-principal);
+    }
+
+    .campo-reserva input::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      filter: invert(1);
     }
 
     .btn-comprar {
@@ -548,9 +585,7 @@
       background-color: var(--color-primario-hover);
     }
 
-    /* ==========================================================================
-       6. PIE DE PÁGINA (Footer)
-       ========================================================================== */
+    /* PIE DE PÁGINA */
     .pie-pagina {
       background-color: #050811;
       border-top: 1px solid var(--borde-color);
@@ -570,9 +605,7 @@
       gap: 1rem;
     }
 
-    /* ==========================================================================
-       7. RESPONSIVE DESIGN (Media Queries)
-       ========================================================================== */
+    /* RESPONSIVE */
     @media (max-width: 640px) {
       .encabezado-contenido {
         flex-direction: column;
@@ -593,11 +626,18 @@
         justify-content: center;
       }
     }
+
+    @media (max-width: 420px) {
+      .opciones-reserva {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
+
 <body>
 
-  <!-- Cabecera -->
+  <!-- CABECERA -->
   <header class="encabezado">
     <div class="encabezado-contenido">
       <a href="#" class="logo-contenedor">
@@ -605,13 +645,12 @@
         <span class="logo-texto">Cinepolis</span>
       </a>
 
-      <!-- Buscador -->
       <div class="buscador-contenedor">
         <span class="buscador-icono">🔍</span>
-        <input 
-          type="text" 
-          id="inputBuscador" 
-          class="buscador-input" 
+        <input
+          type="text"
+          id="inputBuscador"
+          class="buscador-input"
           placeholder="Buscar película..."
         >
       </div>
@@ -623,59 +662,97 @@
     </div>
   </header>
 
-  <!-- Banner Héroe -->
+  <!-- BANNER -->
   <section class="seccion-heroe">
     <div class="heroe-contenido">
       <div>
         <h1 class="heroe-titulo">Películas en Cartelera</h1>
-        <p class="heroe-subtitulo">Selecciona una película y reserva tus boletos al instante.</p>
+        <p class="heroe-subtitulo">
+          Selecciona una película y reserva tus boletos al instante.
+        </p>
       </div>
 
-      <!-- Filtros por Género -->
-      <div id="contenedorFiltros" class="filtros-genero">
-        <!-- Generado dinámicamente -->
-      </div>
+      <div id="contenedorFiltros" class="filtros-genero"></div>
     </div>
   </section>
 
-  <!-- Lista de Películas -->
+  <!-- CARTELERA -->
   <main class="contenedor-principal">
-    <div id="gridPeliculas" class="cartelera-grid">
-      <!-- Generado dinámicamente por JS -->
-    </div>
+    <div id="gridPeliculas" class="cartelera-grid"></div>
   </main>
 
-  <!-- Modal de Selección de Boletos -->
+  <!-- MODAL DE RESERVA -->
   <div id="modalPelicula" class="modal-overlay">
     <div class="modal-contenedor">
+
       <div class="modal-cabecera-poster">
         <img id="modalImagen" src="" alt="Póster">
         <div class="modal-overlay-gradiente"></div>
-        <button id="btnCerrarModal" class="btn-cerrar-modal">&times;</button>
+
+        <button id="btnCerrarModal" class="btn-cerrar-modal" type="button">
+          &times;
+        </button>
+
         <div class="modal-info-basica">
           <span id="modalGenero" class="pelicula-genero"></span>
           <h2 id="modalTitulo" class="pelicula-titulo" style="font-size: 1.4rem;"></h2>
         </div>
       </div>
+
       <div class="modal-cuerpo">
+
         <div class="modal-meta-bar">
           <span>⏱️ <strong id="modalDuracion" style="color: var(--texto-principal);"></strong></span>
           <span>⭐ <strong id="modalRating" style="color: #fbbf24;"></strong></span>
           <span>Clasif: <strong id="modalClasificacion" style="color: var(--texto-principal);"></strong></span>
         </div>
+
         <p id="modalSinopsis" class="modal-sinopsis"></p>
-        
+
+        <!-- SELECTORES DE FECHA, FORMATO E IDIOMA -->
+        <div class="opciones-reserva">
+
+          <div class="campo-reserva">
+            <label for="fechaFuncion">Fecha de la función</label>
+            <input type="date" id="fechaFuncion" required>
+          </div>
+
+          <div class="campo-reserva">
+            <label for="tipoPelicula">Tipo de película</label>
+            <select id="tipoPelicula" required>
+              <option value="2D">2D</option>
+              <option value="3D">3D</option>
+              <option value="IMAX">IMAX</option>
+              <option value="4D">4D</option>
+            </select>
+          </div>
+
+          <div class="campo-reserva">
+            <label for="idiomaPelicula">Idioma</label>
+            <select id="idiomaPelicula" required>
+              <option value="Original">Original</option>
+              <option value="Doblado">Doblado</option>
+              <option value="Subtitulado">Subtitulado</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- HORARIOS -->
         <div class="modal-seccion-horarios">
           <h4>Selecciona un Horario</h4>
           <div id="modalHorarios" class="modal-horarios-grid"></div>
         </div>
 
-        <button id="btnConfirmar" class="btn-comprar">Comprar Boletos</button>
+        <button id="btnConfirmar" class="btn-comprar" type="button">
+          Comprar Boletos
+        </button>
+
       </div>
     </div>
   </div>
 
-  <!-- Pie de página -->
+  <!-- PIE DE PÁGINA -->
   <footer class="pie-pagina">
     <div class="pie-pagina-contenido">
       <p>&copy; 2026 CinePremier Demo - CSS Tradicional.</p>
@@ -683,9 +760,9 @@
     </div>
   </footer>
 
-  <!-- JavaScript Vanilla -->
+  <!-- JAVASCRIPT -->
   <script>
-    // Datos de ejemplo
+    // DATOS DE EJEMPLO
     const peliculas = [
       {
         id: 1,
@@ -755,17 +832,17 @@
       }
     ];
 
-    // Estado local
+    // ESTADO LOCAL
     let generoSeleccionado = "Todos";
     let textoBusqueda = "";
     let horarioSeleccionado = "";
 
-    // Elementos DOM
+    // ELEMENTOS DEL DOM
     const gridPeliculas = document.getElementById("gridPeliculas");
     const contenedorFiltros = document.getElementById("contenedorFiltros");
     const inputBuscador = document.getElementById("inputBuscador");
-    
-    // Elementos Modal DOM
+
+    // ELEMENTOS DEL MODAL
     const modalPelicula = document.getElementById("modalPelicula");
     const btnCerrarModal = document.getElementById("btnCerrarModal");
     const modalImagen = document.getElementById("modalImagen");
@@ -778,33 +855,63 @@
     const modalHorarios = document.getElementById("modalHorarios");
     const btnConfirmar = document.getElementById("btnConfirmar");
 
-    // Obtener lista de géneros únicos
-    const generos = ["Todos", ...new Set(peliculas.map(p => p.genero))];
+    // NUEVOS CONTROLES
+    const fechaFuncion = document.getElementById("fechaFuncion");
+    const tipoPelicula = document.getElementById("tipoPelicula");
+    const idiomaPelicula = document.getElementById("idiomaPelicula");
 
-    // Renderizar botones de filtro por género
+    // OBTENER FECHA LOCAL ACTUAL
+    function obtenerFechaLocal() {
+      const hoy = new Date();
+
+      const anio = hoy.getFullYear();
+      const mes = String(hoy.getMonth() + 1).padStart(2, "0");
+      const dia = String(hoy.getDate()).padStart(2, "0");
+
+      return `${anio}-${mes}-${dia}`;
+    }
+
+    const fechaActual = obtenerFechaLocal();
+
+    fechaFuncion.min = fechaActual;
+    fechaFuncion.value = fechaActual;
+
+    // OBTENER GÉNEROS ÚNICOS
+    const generos = [
+      "Todos",
+      ...new Set(peliculas.map(pelicula => pelicula.genero))
+    ];
+
+    // RENDERIZAR FILTROS
     function renderizarFiltros() {
       contenedorFiltros.innerHTML = generos.map(genero => `
-        <button 
-          class="btn-filtro ${generoSeleccionado === genero ? 'activo' : ''}" 
+        <button
+          class="btn-filtro ${generoSeleccionado === genero ? 'activo' : ''}"
           onclick="filtrarPorGenero('${genero}')"
+          type="button"
         >
           ${genero}
         </button>
-      `).join('');
+      `).join("");
     }
 
-    // Filtrar géneros
+    // FILTRAR POR GÉNERO
     window.filtrarPorGenero = function(genero) {
       generoSeleccionado = genero;
       renderizarFiltros();
       renderizarCartelera();
     };
 
-    // Renderizar tarjetas de películas
+    // RENDERIZAR CARTELERA
     function renderizarCartelera() {
       const filtradas = peliculas.filter(pelicula => {
-        const coincideGenero = generoSeleccionado === "Todos" || pelicula.genero === generoSeleccionado;
-        const coincideBusqueda = pelicula.titulo.toLowerCase().includes(textoBusqueda.toLowerCase());
+        const coincideGenero =
+          generoSeleccionado === "Todos" ||
+          pelicula.genero === generoSeleccionado;
+
+        const coincideBusqueda =
+          pelicula.titulo.toLowerCase().includes(textoBusqueda.toLowerCase());
+
         return coincideGenero && coincideBusqueda;
       });
 
@@ -821,38 +928,73 @@
 
       gridPeliculas.innerHTML = filtradas.map(pelicula => `
         <div class="pelicula-card">
+
           <div class="poster-wrapper">
-            <img src="${pelicula.poster}" alt="${pelicula.titulo}" class="poster-imagen">
+            <img
+              src="${pelicula.poster}"
+              alt="${pelicula.titulo}"
+              class="poster-imagen"
+            >
+
             <div class="poster-sombra"></div>
-            <span class="badge-clasificacion">${pelicula.clasificacion}</span>
-            <span class="badge-rating">⭐ ${pelicula.rating}</span>
+
+            <span class="badge-clasificacion">
+              ${pelicula.clasificacion}
+            </span>
+
+            <span class="badge-rating">
+              ⭐ ${pelicula.rating}
+            </span>
+
             <div class="poster-info-overlay">
               <span class="pelicula-genero">${pelicula.genero}</span>
               <h3 class="pelicula-titulo">${pelicula.titulo}</h3>
             </div>
           </div>
+
           <div class="pelicula-contenido">
+
             <div class="pelicula-meta">
               <span>⏱️ ${pelicula.duracion}</span>
               <span>Hoy</span>
             </div>
+
             <div class="horarios-lista">
-              ${pelicula.horarios.map(h => `<span class="badge-horario">${h}</span>`).join('')}
+              ${pelicula.horarios.map(horario => `
+                <span class="badge-horario">${horario}</span>
+              `).join("")}
             </div>
-            <button class="btn-ver-mas" onclick="abrirModal(${pelicula.id})">
+
+            <button
+              class="btn-ver-mas"
+              onclick="abrirModal(${pelicula.id})"
+              type="button"
+            >
               Ver detalles / Comprar
             </button>
+
           </div>
         </div>
-      `).join('');
+      `).join("");
     }
 
-    // Abrir Modal
+    // ABRIR MODAL
     window.abrirModal = function(id) {
       const pelicula = peliculas.find(p => p.id === id);
-      if (!pelicula) return;
+
+      if (!pelicula) {
+        return;
+      }
 
       horarioSeleccionado = "";
+
+      // Restablecer valores iniciales
+      fechaFuncion.min = obtenerFechaLocal();
+      fechaFuncion.value = obtenerFechaLocal();
+      tipoPelicula.value = "2D";
+      idiomaPelicula.value = "Original";
+
+      // Mostrar información de la película
       modalImagen.src = pelicula.poster;
       modalTitulo.textContent = pelicula.titulo;
       modalGenero.textContent = pelicula.genero;
@@ -861,48 +1003,103 @@
       modalClasificacion.textContent = pelicula.clasificacion;
       modalSinopsis.textContent = pelicula.sinopsis;
 
-      modalHorarios.innerHTML = pelicula.horarios.map(h => `
-        <button class="btn-horario" onclick="seleccionarHorario(this, '${h}')">${h}</button>
-      `).join('');
+      // Crear botones de horarios
+      modalHorarios.innerHTML = pelicula.horarios.map(horario => `
+        <button
+          class="btn-horario"
+          onclick="seleccionarHorario(this, '${horario}')"
+          type="button"
+        >
+          ${horario}
+        </button>
+      `).join("");
 
       modalPelicula.classList.add("activo");
     };
 
-    // Seleccionar Horario en Modal
-    window.seleccionarHorario = function(btn, horario) {
+    // SELECCIONAR HORARIO
+    window.seleccionarHorario = function(boton, horario) {
       horarioSeleccionado = horario;
-      document.querySelectorAll(".btn-horario").forEach(b => b.classList.remove("seleccionado"));
-      btn.classList.add("seleccionado");
+
+      document.querySelectorAll(".btn-horario").forEach(botonHorario => {
+        botonHorario.classList.remove("seleccionado");
+      });
+
+      boton.classList.add("seleccionado");
     };
 
-    // Cerrar Modal
+    // CERRAR MODAL
     function cerrarModal() {
       modalPelicula.classList.remove("activo");
     }
 
-    // Listeners
-    inputBuscador.addEventListener("input", (e) => {
-      textoBusqueda = e.target.value;
+    // EVENTO DEL BUSCADOR
+    inputBuscador.addEventListener("input", function(evento) {
+      textoBusqueda = evento.target.value;
       renderizarCartelera();
     });
 
+    // CERRAR CON EL BOTÓN
     btnCerrarModal.addEventListener("click", cerrarModal);
-    modalPelicula.addEventListener("click", (e) => {
-      if (e.target === modalPelicula) cerrarModal();
+
+    // CERRAR AL HACER CLIC FUERA DEL MODAL
+    modalPelicula.addEventListener("click", function(evento) {
+      if (evento.target === modalPelicula) {
+        cerrarModal();
+      }
     });
 
-    btnConfirmar.addEventListener("click", () => {
+    // CONFIRMAR COMPRA
+    btnConfirmar.addEventListener("click", function() {
+
+      const fechaSeleccionada = fechaFuncion.value;
+      const fechaMinima = obtenerFechaLocal();
+
+      // Validar fecha
+      if (!fechaSeleccionada) {
+        alert("Por favor selecciona la fecha de la función.");
+        fechaFuncion.focus();
+        return;
+      }
+
+      if (fechaSeleccionada < fechaMinima) {
+        alert("La fecha de la función no puede ser anterior a hoy.");
+        fechaFuncion.focus();
+        return;
+      }
+
+      // Validar horario
       if (!horarioSeleccionado) {
         alert("Por favor selecciona un horario para tu función.");
         return;
       }
-      alert(`¡Boletos reservados con éxito para la función de las ${horarioSeleccionado}!`);
+
+      // Formatear fecha
+      const fechaFormateada = new Date(
+        fechaSeleccionada + "T00:00:00"
+      ).toLocaleDateString("es-MX", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+      });
+
+      // Mostrar confirmación
+      alert(
+        "¡Boletos reservados con éxito!\n\n" +
+        "Película: " + modalTitulo.textContent + "\n" +
+        "Fecha: " + fechaFormateada + "\n" +
+        "Hora: " + horarioSeleccionado + "\n" +
+        "Formato: " + tipoPelicula.value + "\n" +
+        "Idioma: " + idiomaPelicula.value
+      );
+
       cerrarModal();
     });
 
-    // Inicializar app
+    // INICIALIZAR APLICACIÓN
     renderizarFiltros();
     renderizarCartelera();
+
   </script>
 </body>
 </html>
