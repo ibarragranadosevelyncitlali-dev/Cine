@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CinePremier - Cartelera de Cine</title>
+  <title>CinePremier - Cartelera y Promociones</title>
+  <!-- Google Fonts: Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
@@ -70,22 +71,29 @@
     }
 
     .logo-icono {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, var(--color-primario), #f59e0b);
-      border-radius: 10px;
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, #e11d48, #fbbf24);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
-      font-size: 1.2rem;
-      box-shadow: 0 4px 15px rgba(225, 29, 72, 0.3);
+      box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4);
+    }
+
+    .logo-icono svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
     }
 
     .logo-texto {
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       font-weight: 800;
       letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     /* BUSCADOR */
@@ -147,7 +155,7 @@
 
     /* BANNER */
     .seccion-heroe {
-      background: linear-gradient(180deg, rgba(15, 23, 42, 0.6) 0%, var(--bg-principal) 100%);
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.8) 0%, var(--bg-principal) 100%);
       border-bottom: 1px solid var(--borde-color);
       padding: 2.5rem 1.5rem;
     }
@@ -163,7 +171,7 @@
     }
 
     .heroe-titulo {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 800;
       letter-spacing: -0.5px;
       margin-bottom: 0.4rem;
@@ -171,7 +179,7 @@
 
     .heroe-subtitulo {
       color: var(--texto-secundario);
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
 
     /* FILTROS */
@@ -205,7 +213,169 @@
       box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
     }
 
-    /* CARTELERA */
+    /* ==========================================================================
+       3.5. CARRUSEL DE COMBOS Y OFERTAS (Nuevo Componente)
+       ========================================================================== */
+    .seccion-combos {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 0.5rem 1.5rem;
+      width: 100%;
+    }
+
+    .titulo-seccion-combos {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .carrusel-contenedor {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radio-borde);
+      box-shadow: var(--sombra);
+    }
+
+    .carrusel-pista {
+      display: flex;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 100%;
+    }
+
+    .combo-card {
+      min-width: 100%;
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      border: 1px solid var(--borde-color);
+      border-radius: var(--radio-borde);
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .combo-info {
+      max-width: 60%;
+    }
+
+    .combo-badge {
+      display: inline-block;
+      background: var(--color-primario);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .combo-titulo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      color: #ffffff;
+    }
+
+    .combo-descripcion {
+      color: var(--texto-secundario);
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .combo-precios {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+    }
+
+    .precio-actual {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #fbbf24;
+    }
+
+    .precio-anterior {
+      font-size: 1rem;
+      color: var(--texto-mutado);
+      text-decoration: line-through;
+    }
+
+    .combo-imagen-wrapper {
+      width: 220px;
+      height: 140px;
+      border-radius: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .combo-imagen-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Botones de navegación del carrusel */
+    .carrusel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid var(--borde-color);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      backdrop-filter: blur(4px);
+      transition: var(--transicion);
+      z-index: 10;
+    }
+
+    .carrusel-btn:hover {
+      background: var(--color-primario);
+      border-color: var(--color-primario);
+    }
+
+    .carrusel-btn.prev { left: 15px; }
+    .carrusel-btn.next { right: 15px; }
+
+    /* Indicadores de puntos */
+    .carrusel-puntos {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+      z-index: 10;
+    }
+
+    .punto-carrusel {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: var(--transicion);
+    }
+
+    .punto-carrusel.activo {
+      background: var(--color-primario);
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    /* ==========================================================================
+       4. GRID DE PELÍCULAS (Main Content & Cards)
+       ========================================================================== */
     .contenedor-principal {
       max-width: 1200px;
       width: 100%;
@@ -621,6 +791,26 @@
         align-items: flex-start;
       }
 
+      .combo-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem 1rem 2.5rem 1rem;
+        gap: 1rem;
+      }
+
+      .combo-info {
+        max-width: 100%;
+      }
+
+      .combo-precios {
+        justify-content: center;
+      }
+
+      .combo-imagen-wrapper {
+        width: 100%;
+        height: 120px;
+      }
+
       .pie-pagina-contenido {
         flex-direction: column;
         justify-content: center;
@@ -640,9 +830,14 @@
   <!-- CABECERA -->
   <header class="encabezado">
     <div class="encabezado-contenido">
+      <!-- Modificado: Nombre del cine y Logotipo SVG -->
       <a href="#" class="logo-contenedor">
-        <div class="logo-icono">🍿</div>
-        <span class="logo-texto">Cinepolis</span>
+        <div class="logo-icono">
+          <svg viewBox="0 0 24 24">
+            <path d="M18 3v2h-2V3H8v2H6V3H4v18h2v-2h2v2h8v-2h2v2h2V3h-2zM8 17H6v-2h2v2zm0-4H6v-2h2v2zm0-4H6V7h2v2zm10 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z"/>
+          </svg>
+        </div>
+        <span class="logo-texto">CinePremier</span>
       </a>
 
       <div class="buscador-contenedor">
@@ -666,17 +861,81 @@
   <section class="seccion-heroe">
     <div class="heroe-contenido">
       <div>
-        <h1 class="heroe-titulo">Películas en Cartelera</h1>
-        <p class="heroe-subtitulo">
-          Selecciona una película y reserva tus boletos al instante.
-        </p>
+        <!-- Modificado: Texto de bienvenida -->
+        <h1 class="heroe-titulo">¡Bienvenido a CinePremier!</h1>
+        <p class="heroe-subtitulo">Disfruta del mejor entretenimiento, la mejor cartelera y promociones exclusivas en la dulcería.</p>
       </div>
 
       <div id="contenedorFiltros" class="filtros-genero"></div>
     </div>
   </section>
 
-  <!-- CARTELERA -->
+  <!-- Agregado: Carrusel de Combos / Ofertas Especiales -->
+  <section class="seccion-combos">
+    <h2 class="titulo-seccion-combos">🍿 Promociones y Combos Dulcería</h2>
+    <div class="carrusel-contenedor">
+      <button class="carrusel-btn prev" onclick="moverCarrusel(-1)">&#10094;</button>
+      <button class="carrusel-btn next" onclick="moverCarrusel(1)">&#10095;</button>
+      
+      <div class="carrusel-pista" id="carruselPista">
+        <!-- Combo 1 -->
+        <div class="combo-card">
+          <div class="combo-info">
+            <span class="combo-badge">¡Oferta Especial!</span>
+            <h3 class="combo-titulo">Combo Pareja VIP</h3>
+            <p class="combo-descripcion">2 Palomitas Grandes Manteca + 2 Refrescos Grandes + 1 Nachos con queso cheddar doble.</p>
+            <div class="combo-precios">
+              <span class="precio-actual">$249 MXN</span>
+              <span class="precio-anterior">$310 MXN</span>
+            </div>
+          </div>
+          <div class="combo-imagen-wrapper">
+            <img src="https://images.unsplash.com/photo-1585647347384-2593bc35786b?w=500&auto=format&fit=crop&q=80" alt="Combo Pareja">
+          </div>
+        </div>
+
+        <!-- Combo 2 -->
+        <div class="combo-card">
+          <div class="combo-info">
+            <span class="combo-badge">Más Vendido</span>
+            <h3 class="combo-titulo">Combo Familiar Premier</h3>
+            <p class="combo-descripcion">1 Palomitas Jumbo + 2 Palomitas Medianas + 4 Refrescos a elegir + 2 Hot Dogs de la casa.</p>
+            <div class="combo-precios">
+              <span class="precio-actual">$389 MXN</span>
+              <span class="precio-anterior">$470 MXN</span>
+            </div>
+          </div>
+          <div class="combo-imagen-wrapper">
+            <img src="https://images.unsplash.com/photo-1572177191856-3cde618dee1f?w=500&auto=format&fit=crop&q=80" alt="Combo Familiar">
+          </div>
+        </div>
+
+        <!-- Combo 3 -->
+        <div class="combo-card">
+          <div class="combo-info">
+            <span class="combo-badge">Para Amantes del Dulce</span>
+            <h3 class="combo-titulo">Combo Snacker Dulce</h3>
+            <p class="combo-descripcion">1 Palomitas Medianas Dulces (Caramelo) + 1 Refresco Mediano + 1 Golosina a elección.</p>
+            <div class="combo-precios">
+              <span class="precio-actual">$145 MXN</span>
+              <span class="precio-anterior">$180 MXN</span>
+            </div>
+          </div>
+          <div class="combo-imagen-wrapper">
+            <img src="https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?w=500&auto=format&fit=crop&q=80" alt="Combo Snacker">
+          </div>
+        </div>
+      </div>
+
+      <div class="carrusel-puntos" id="carruselPuntos">
+        <span class="punto-carrusel activo" onclick="irAlSlide(0)"></span>
+        <span class="punto-carrusel" onclick="irAlSlide(1)"></span>
+        <span class="punto-carrusel" onclick="irAlSlide(2)"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lista de Películas -->
   <main class="contenedor-principal">
     <div id="gridPeliculas" class="cartelera-grid"></div>
   </main>
@@ -755,7 +1014,7 @@
   <!-- PIE DE PÁGINA -->
   <footer class="pie-pagina">
     <div class="pie-pagina-contenido">
-      <p>© 2026 CinePremier Demo - CSS Tradicional.</p>
+      <p>&copy; 2026 CinePremier Demo - Todos los derechos reservados.</p>
       <p>Proyecto de Ejemplo para GitHub Pages</p>
     </div>
   </footer>
@@ -869,6 +1128,7 @@
     let generoSeleccionado = "Todos";
     let textoBusqueda = "";
     let horarioSeleccionado = "";
+    let slideActual = 0;
 
     // ELEMENTOS DEL DOM
     const gridPeliculas = document.getElementById("gridPeliculas");
@@ -888,23 +1148,36 @@
     const modalHorarios = document.getElementById("modalHorarios");
     const btnConfirmar = document.getElementById("btnConfirmar");
 
-    // NUEVOS CONTROLES
-    const fechaFuncion = document.getElementById("fechaFuncion");
-    const tipoPelicula = document.getElementById("tipoPelicula");
-    const idiomaPelicula = document.getElementById("idiomaPelicula");
+    // Lógica del Carrusel de Combos
+    window.moverCarrusel = function(direccion) {
+      const pista = document.getElementById("carruselPista");
+      const totalSlides = 3;
+      slideActual = (slideActual + direccion + totalSlides) % totalSlides;
+      pista.style.transform = `translateX(-${slideActual * 100}%)`;
+      actualizarPuntos();
+    };
 
-    // OBTENER FECHA LOCAL ACTUAL
-    function obtenerFechaLocal() {
-      const hoy = new Date();
+    window.irAlSlide = function(index) {
+      slideActual = index;
+      const pista = document.getElementById("carruselPista");
+      pista.style.transform = `translateX(-${slideActual * 100}%)`;
+      actualizarPuntos();
+    };
 
-      const anio = hoy.getFullYear();
-      const mes = String(hoy.getMonth() + 1).padStart(2, "0");
-      const dia = String(hoy.getDate()).padStart(2, "0");
-
-      return `${anio}-${mes}-${dia}`;
+    function actualizarPuntos() {
+      const puntos = document.querySelectorAll(".punto-carrusel");
+      puntos.forEach((p, idx) => {
+        p.classList.toggle("activo", idx === slideActual);
+      });
     }
 
-    const fechaActual = obtenerFechaLocal();
+    // Auto-reproducción suave del carrusel cada 5 segundos
+    setInterval(() => {
+      moverCarrusel(1);
+    }, 5000);
+
+    // Obtener lista de géneros únicos
+    const generos = ["Todos", ...new Set(peliculas.map(p => p.genero))];
 
     fechaFuncion.min = fechaActual;
     fechaFuncion.value = fechaActual;
